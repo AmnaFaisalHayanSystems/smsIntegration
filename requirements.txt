@@ -1,0 +1,7 @@
+Django
+djangorestframework>=3.13.1
+django-filter
+django-cors-headers
+django-storages==1.12.3
+psycopg2-binary
+requests
