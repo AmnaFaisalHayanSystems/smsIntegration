@@ -14,3 +14,5 @@ def send_sms(self, phoneNo, message, id):
     instance.error = res.text
     instance.save()
     print(res.text)
+    
+    return res.text
