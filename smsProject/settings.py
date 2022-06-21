@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,6 +25,14 @@ SECRET_KEY = 'django-insecure-e^9_9x*8m3o0h*m^0)y+7m&877!ja%jphbkqw0@lucf#$uecc=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+GSM = {
+    "url_prefix": "http",
+    "phone_ip": "10.8.0.9",
+    "phone_port": "8090",
+    "app_username": "user",
+    "password": "nmnlk090", 
+}
+
 ALLOWED_HOSTS = ["10.8.0.2"]
 
 
@@ -39,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'recieveSMS',
     'rest_framework',
-    'datasource'
+    'datasource',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [
@@ -124,3 +133,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+BROKER_URL = 'redis://' + os.getenv('CHANNELS_HOST', '172.17.0.1') + ':6379'
+CELERY_RESULT_BACKEND = 'redis://' + \
+    os.getenv('CHANNELS_HOST', '172.17.0.1') + ':6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Karachi'
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'
