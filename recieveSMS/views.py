@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from recieveSMS.utils import storeMessage
 from recieveSMS.utils import setUrl
 import json
+
 class SMSreceiverAPI(views.APIView):
     def get(self,request):
         """Just a GET request view for testing purposes"""
@@ -36,7 +37,8 @@ class SMSreceiverAPI(views.APIView):
             data = json.dumps("missing phoneNumber parametre")
             )
 
-    def post(self,request):
+class SMSsenderAPI(views.APIView):
+    def get(self,request):
         """Just a GET request view for testing purposes"""
         phoneNumber = request.query_params.get("phoneNumber", None)
         if phoneNumber:

@@ -21,7 +21,7 @@ def setUrl(phone,message):
     x = requests.get(url)
     print(x.text)
     try:
-        sendSMS.object.create(
+        sendSMS.objects.create(
             message = message,
             phoneNo = phone
         )
