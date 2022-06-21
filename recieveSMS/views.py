@@ -9,7 +9,7 @@ from rest_framework import (
 from rest_framework.response import Response
 
 from recieveSMS.utils import storeMessage
-from recieveSMS.utils import setUrl
+# from recieveSMS.utils import setUrl
 import json
 
 class SMSreceiverAPI(views.APIView):
@@ -37,22 +37,22 @@ class SMSreceiverAPI(views.APIView):
             data = json.dumps("missing phoneNumber parametre")
             )
 
-class SMSsenderAPI(views.APIView):
-    def get(self,request):
-        """Just a GET request view for testing purposes"""
-        phoneNumber = request.query_params.get("phoneNumber", None)
-        if phoneNumber:
-            message = request.query_params.get("message", None)
-            if message:
-                return Response(status=status.HTTP_200_OK,
-                data = json.dumps(setUrl(phoneNumber,message))
-                )
-            else:
-                return Response(status=status.HTTP_400_BAD_REQUEST,
-                data = json.dumps("missing message parametre")
-                )
-        else:
+# class SMSsenderAPI(views.APIView):
+#     def get(self,request):
+#         """Just a GET request view for testing purposes"""
+#         phoneNumber = request.query_params.get("phoneNumber", None)
+#         if phoneNumber:
+#             message = request.query_params.get("message", None)
+#             if message:
+#                 return Response(status=status.HTTP_200_OK,
+#                 data = json.dumps(setUrl(phoneNumber,message))
+#                 )
+#             else:
+#                 return Response(status=status.HTTP_400_BAD_REQUEST,
+#                 data = json.dumps("missing message parametre")
+#                 )
+#         else:
 
-            return Response(status=status.HTTP_400_BAD_REQUEST,
-            data = json.dumps("missing phoneNumber parametre")
-            )
+#             return Response(status=status.HTTP_400_BAD_REQUEST,
+#             data = json.dumps("missing phoneNumber parametre")
+#             )

@@ -5,3 +5,5 @@ django-cors-headers
 django-storages==1.12.3
 psycopg2-binary
 requests
+celery
+django-celery-resultspip i
